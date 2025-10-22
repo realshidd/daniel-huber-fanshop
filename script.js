@@ -8,13 +8,6 @@ const products = [
     tag: "Classic"
   },
   {
-    id: "cider-bottle",
-    title: "Huber Cider – Flasche",
-    img: "./assets/cider-bottle.png",
-    price: 6.5,
-    tag: "Limited"
-  },
-  {
     id: "laser-mug",
     title: "Laseraugen Tasse",
     img: "./assets/laser-mug.png",
@@ -34,6 +27,13 @@ const products = [
     img: "./assets/laser-boxers.png",
     price: 24.0,
     tag: "Drip"
+  },
+  {
+    id: "cider-bottle",
+    title: "Huber Cider – Flasche",
+    img: "./assets/cider-bottle.png",
+    price: 6.5,
+    tag: "Limited"
   }
 ];
 
@@ -65,16 +65,16 @@ const cartCount = document.getElementById('cartCount');
 const cartSubtotal = document.getElementById('cartSubtotal');
 const closeCart = document.getElementById('closeCart');
 
-function fmt(amount){ return new Intl.NumberFormat('de-CH', { style:'currency', currency:'CHF' }).format(amount); }
+function fmt(amount) { return new Intl.NumberFormat('de-CH', { style: 'currency', currency: 'CHF' }).format(amount); }
 
-function openCart(){ cartDrawer.classList.add('open'); cartDrawer.setAttribute('aria-hidden','false'); }
-function closeCartDrawer(){ cartDrawer.classList.remove('open'); cartDrawer.setAttribute('aria-hidden','true'); }
+function openCart() { cartDrawer.classList.add('open'); cartDrawer.setAttribute('aria-hidden', 'false'); }
+function closeCartDrawer() { cartDrawer.classList.remove('open'); cartDrawer.setAttribute('aria-hidden', 'true'); }
 
 cartBtn.addEventListener('click', openCart);
 closeCart.addEventListener('click', closeCartDrawer);
-document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeCartDrawer(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeCartDrawer(); });
 
-function renderCart(){
+function renderCart() {
   cartItems.innerHTML = '';
   let sum = 0;
   cart.forEach(item => {
@@ -95,42 +95,42 @@ function renderCart(){
       <button class="icon-btn rm" data-id="${item.id}" aria-label="Entfernen">✕</button>`;
     cartItems.appendChild(row);
   });
-  cartCount.textContent = cart.reduce((a,b)=>a+b.qty,0);
+  cartCount.textContent = cart.reduce((a, b) => a + b.qty, 0);
   cartSubtotal.textContent = fmt(sum);
-  if(cart.length===0){
+  if (cart.length === 0) {
     cartItems.innerHTML = '<p style="color:#9bb0d0">Leer – goen wir shoppen 😛😛😛😛</p>';
   }
 }
 
-document.body.addEventListener('click', (e)=>{
-  if(e.target.matches('.add')){
+document.body.addEventListener('click', (e) => {
+  if (e.target.matches('.add')) {
     const id = e.target.dataset.id;
-    const found = cart.find(i=>i.id===id);
-    if(found) found.qty++; else cart.push({id, qty:1});
+    const found = cart.find(i => i.id === id);
+    if (found) found.qty++; else cart.push({ id, qty: 1 });
     renderCart(); openCart();
   }
-  if(e.target.matches('.inc')){
+  if (e.target.matches('.inc')) {
     const id = e.target.dataset.id;
-    const it = cart.find(i=>i.id===id); if(it) it.qty++;
+    const it = cart.find(i => i.id === id); if (it) it.qty++;
     renderCart();
   }
-  if(e.target.matches('.dec')){
+  if (e.target.matches('.dec')) {
     const id = e.target.dataset.id;
-    const it = cart.find(i=>i.id===id); if(it && it.qty>1) it.qty--; else removeItem(id);
+    const it = cart.find(i => i.id === id); if (it && it.qty > 1) it.qty--; else removeItem(id);
     renderCart();
   }
-  if(e.target.matches('.rm')){
+  if (e.target.matches('.rm')) {
     removeItem(e.target.dataset.id); renderCart();
   }
-  if(e.target.matches('.view')){
-    const p = products.find(x=>x.id===e.target.dataset.id);
+  if (e.target.matches('.view')) {
+    const p = products.find(x => x.id === e.target.dataset.id);
     alert(`${p.title}\n\nQualitaet: tuff.\nBoniswil‑Approved: 100%.\n\nPreis: CHF ${p.price.toFixed(2)}`);
   }
 });
 
-function removeItem(id){
-  const idx = cart.findIndex(i=>i.id===id);
-  if(idx>-1) cart.splice(idx,1);
+function removeItem(id) {
+  const idx = cart.findIndex(i => i.id === id);
+  if (idx > -1) cart.splice(idx, 1);
 }
 
 // Checkout modal
@@ -139,10 +139,10 @@ const modal = document.getElementById('checkoutModal');
 const closeModal = document.getElementById('closeModal');
 const checkoutForm = document.getElementById('checkoutForm');
 
-checkoutBtn.addEventListener('click', ()=>{ modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); });
-closeModal.addEventListener('click', ()=>{ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); });
-modal.addEventListener('click', (e)=>{ if(e.target===modal) closeModal.click(); });
-checkoutForm.addEventListener('submit', (e)=>{
+checkoutBtn.addEventListener('click', () => { modal.classList.add('open'); modal.setAttribute('aria-hidden', 'false'); });
+closeModal.addEventListener('click', () => { modal.classList.remove('open'); modal.setAttribute('aria-hidden', 'true'); });
+modal.addEventListener('click', (e) => { if (e.target === modal) closeModal.click(); });
+checkoutForm.addEventListener('submit', (e) => {
   e.preventDefault();
   alert('Besten Dank! Deine Bestellung ist eingegangen. Daniel Huber gruessst – Boniswil bleibt js.');
   modal.classList.remove('open'); closeCartDrawer(); cart.splice(0, cart.length); renderCart();
