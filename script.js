@@ -144,7 +144,7 @@ closeModal.addEventListener('click', ()=>{ modal.classList.remove('open'); modal
 modal.addEventListener('click', (e)=>{ if(e.target===modal) closeModal.click(); });
 checkoutForm.addEventListener('submit', (e)=>{
   e.preventDefault();
-  alert('Besten Dank! Deine Fake‑Bestellung ist eingegangen. Daniel Huber gruessst – Boniswil bleibt js.');
+  alert('Besten Dank! Deine Bestellung ist eingegangen. Daniel Huber gruessst – Boniswil bleibt js.');
   modal.classList.remove('open'); closeCartDrawer(); cart.splice(0, cart.length); renderCart();
 });
 
