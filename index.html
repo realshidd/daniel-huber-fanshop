@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Daniel Huber Fanshop</title>
+  <meta name="description" content="Offizieller (inoffizieller) Daniel Huber Fanshop – Laseraugen‑Kollektion, Boniswil‑Drip und mehr.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="#"><span class="logo">DH</span><span class="brand-text">Daniel Huber Fanshop</span></a>
+      <nav class="nav">
+        <a href="#produkte">Produkte</a>
+        <a href="#about">About</a>
+        <a href="#faq">FAQ</a>
+        <button id="cartBtn" aria-label="Warenkorb öffnen" class="cart-btn">
+          <span class="cart-count" id="cartCount">0</span>
+          🛒
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <div class="hero-copy">
+          <h1>Huber. Laser. Boniswil.</h1>
+          <p>Mathe‑Legende. Style‑Ikone. Microsoft‑Teams‑Gesicht‑mit‑Zunge 😛😛😛😛 – Willkommen im Daniel Huber Fanshop. Alles <span class="highlight">js</span>, nichts <span class="strike">sql</span>.</p>
+          <a href="#produkte" class="btn primary">Jetzt shoppen</a>
+        </div>
+        <div class="hero-art">
+          <div class="glow"></div>
+          <img src="./assets/laser-mug.png" alt="Laseraugen Tasse" class="hero-img" />
+        </div>
+      </div>
+      <div class="ticker" aria-hidden="true">
+        <div class="ticker-track">
+          <span>Boniswil Öl Aktien sind göttlich</span>
+          <span>Delayed Labels Jungler Leesin Bearing Injection</span>
+          <span>Daniel Huber = tuff</span>
+          <span>4.6 Geschirrspüler in Malta</span>
+          <span>Gesicht mit Zunge 😛😛😛😛</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="produkte" class="section products">
+      <div class="wrap">
+        <h2>Top‑Picks</h2>
+        <div class="grid" id="productGrid">
+          <!-- cards injected by JS -->
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section about">
+      <div class="wrap about-inner">
+        <div class="about-copy">
+          <h2>Wer ist Daniel Huber?</h2>
+          <p>Die Mathe‑Legende der BBBaden – der Mann, der bewiesen hat, dass <strong>0.4 = 1/4</strong> (no cap) und trotzdem humble bleibt. Hier feiern wir sein Vermachtnis mit Stil.</p>
+          <p>Das berühmte Foto, das alles erklärt:</p>
+        </div>
+        <div class="about-portrait">
+          <img src="https://www.bbbaden.ch/wp-content/uploads/2023/07/Daniel-Huber.jpg" alt="Daniel Huber Porträt" />
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="section faq">
+      <div class="wrap">
+        <h2>FAQ</h2>
+        <details>
+          <summary>Ist Daniel Huber tuff?</summary>
+          <p>Das sollte schon gar keine frage sein! Daniel Huber ist nicht nur tuff sondern der Gott des Mathe-Universums</p>
+        </details>
+        <details>
+          <summary>Warum sollte ich einen Artikel kaufen?</summary>
+          <p>Frauenmagnet</p>
+        </details>
+        <details>
+          <summary>Werde ich jemals HTN erreichen?</summary>
+          <p>Rope, es ist vorbei</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <p>© <span id="year"></span> Daniel Huber Fanshop – gebaut mit ❤️, Respekt und einer Prise Boniswil.</p>
+      <p class="tiny">Credits: Boniswil Öl Aktien, Teams Gesicht mit Zunge 😛😛😛😛</p>
+    </div>
+  </footer>
+
+  <!-- Cart Drawer -->
+  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true" aria-label="Warenkorb">
+    <div class="cart-head">
+      <h3>Warenkorb</h3>
+      <button id="closeCart" class="icon-btn" aria-label="Warenkorb schliessen">✕</button>
+    </div>
+    <div class="cart-body" id="cartItems"></div>
+    <div class="cart-foot">
+      <div class="row">
+        <span>Zwischensumme</span>
+        <strong id="cartSubtotal">CHF 0.00</strong>
+      </div>
+      <button id="checkoutBtn" class="btn primary stretch">Zur Kasse</button>
+    </div>
+  </aside>
+
+  <!-- Checkout Modal -->
+  <div class="modal" id="checkoutModal" aria-hidden="true" role="dialog" aria-label="Checkout">
+    <div class="modal-card">
+      <h3>Checkout</h3>
+      <p>Danke, tuffe Legende, dass du bei uns einkaufst.</p>
+      <form id="checkoutForm" class="checkout-form">
+        <label>Deine E‑Mail
+          <input type="email" required placeholder="huber@boniswil.ch" />
+        </label>
+        <label>Adresse
+          <input type="text" required placeholder="Huberstrasse 4, 5706 Boniswil" />
+        </label>
+        <button class="btn primary stretch" type="submit">Bestellung absenden</button>
+      </form>
+      <button id="closeModal" class="icon-btn close">Schliessen</button>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
