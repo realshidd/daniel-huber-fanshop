@@ -191,7 +191,7 @@ body {
 
 @keyframes scroll {
   from {
-    transform: translateX(60%)
+    transform: translateX(105%)
   }
 
   to {
